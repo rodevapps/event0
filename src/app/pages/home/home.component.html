@@ -1,0 +1,39 @@
+<main>
+  <section id="home">
+    <div class="max-w-md m-auto">
+      <h4 class="text-center"><strong>Registration form</strong></h4>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div>
+          <input type="text" formControlName="name" class="border w-full mt-5 py-2 px-1" [ngClass]="registrationForm.controls['name'].touched && registrationForm.controls['name'].errors ? 'border-red-500 text-red-500' : ''" placeholder="Your name" autofocus />
+          <div *ngIf="registrationForm.controls['name'].touched && registrationForm.controls['name'].errors?.['required']" class="text-xs text-red-500">
+            <strong>Participant name can not be empty!</strong>
+          </div>
+          <div *ngIf="registrationForm.controls['name'].touched && registrationForm.controls['name'].errors?.['minlength']" class="text-xs text-red-500">
+            <strong>Participant name is too short!</strong>
+          </div>
+          <div *ngIf="registrationForm.controls['name'].touched && registrationForm.controls['name'].errors?.['maxlength']" class="text-xs text-red-500">
+            <strong>Participant name is too long!</strong>
+          </div>
+        </div>
+        <div>
+          <input type="email" formControlName="email" class="border w-full mt-5 py-2 px-1" [ngClass]="registrationForm.controls['email'].touched && registrationForm.controls['email'].errors ? 'border-red-500 text-red-500' : ''" placeholder="Your email" />
+          <div *ngIf="registrationForm.controls['email'].touched && registrationForm.controls['email'].errors?.['required']" class="text-xs text-red-500">
+            <strong>Participant email can not be empty!</strong>
+          </div>
+          <div *ngIf="registrationForm.controls['email'].touched && registrationForm.controls['email'].errors?.['minlength']" class="text-xs text-red-500">
+            <strong>Participant email is too short!</strong>
+          </div>
+          <div *ngIf="registrationForm.controls['email'].touched && registrationForm.controls['email'].errors?.['maxlength']" class="text-xs text-red-500">
+            <strong>Participant email is too long!</strong>
+          </div>
+          <div *ngIf="registrationForm.controls['email'].touched && registrationForm.controls['email'].errors?.['email']" class="text-xs text-red-500">
+            <strong>Participant email is invalid!</strong>
+          </div>
+        </div>
+        <div>
+          <input type="submit" value="Register" class="bg-blue-500 text-white cursor-pointer w-full mt-5 py-2 px-1" [disabled]="registrationForm.pristine || !registrationForm.valid" />
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
